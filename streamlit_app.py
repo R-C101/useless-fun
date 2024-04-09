@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-
+from st_on_hover_tabs import on_hover_tabs
 def sound_techy():
     # Fetch JSON data from the URL
     url = "https://techy-api.vercel.app/api/json"
@@ -35,9 +35,10 @@ def random_facts():
     response = requests.get(base_url + endpoint, params=params, headers=headers)
 
     # Check if the request was successful (status code 200)
-    if 'text' in response.json:
+    if response.status_code == 200:
+        data = response.json()
         # Display the message in bold and big text using Streamlit
-        st.markdown(f"<h1 style='text-align: center;'><b>{response.json['text']}</b></h1>", unsafe_allow_html=True)
+        st.markdown(f"<h1 style='text-align: center;'><b>{data['text']}</b></h1>", unsafe_allow_html=True)
     else:
         st.write("No message found in the response. Try again")
         
@@ -113,3 +114,31 @@ def game_giveaways():
         st.write("---")
 
 
+def sidebar():
+    with st.sidebar:
+        tabs = on_hover_tabs(tabName=['ㅤ','Home','Random Tech Jargon', 'Random Facts','Memes','Game Giveaways'], 
+                         iconName=['menu','home','dashboard', 'description','description','description'],
+                         styles = {'navtab': {
+                                                  'font-size': '18px',
+                                                  'transition': '.3s',
+                                                  'white-space': 'nowrap',
+                                                  'text-transform': 'uppercase'}},
+                         
+                         default_choice=1)
+    return tabs
+
+def main():
+    tabs = sidebar()
+    if tabs =='Random Tech Jargon':
+        sound_techy()
+
+    elif tabs == 'Random Facts':
+        random_facts()
+        
+    elif tabs == 'Memes':
+        memes()
+    elif tabs == 'Game Giveaways':
+        game_giveaways()
+        
+if __name__ == "__main__":
+    main()
