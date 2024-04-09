@@ -1,0 +1,1 @@
+Useless-Fun is a streamlit application made specifically to waste 10 minutes of your life.
