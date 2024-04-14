@@ -116,8 +116,8 @@ def game_giveaways():
 
 def sidebar():
     with st.sidebar:
-        tabs = on_hover_tabs(tabName=['ㅤ','Home','Random Tech Jargon', 'Random Facts','Memes','Game Giveaways'], 
-                         iconName=['menu','home','dashboard', 'description','description','description'],
+        tabs = on_hover_tabs(tabName=['ㅤ','Home','Random Tech Jargon', 'Random Facts','Meme Templates','Game Giveaways'], 
+                         iconName=['menu','home','dashboard', 'description','picture','description'],
                          styles = {'navtab': {
                                                   'font-size': '18px',
                                                   'transition': '.3s',
@@ -135,7 +135,7 @@ def main():
     elif tabs == 'Random Facts':
         random_facts()
         
-    elif tabs == 'Memes':
+    elif tabs == 'Meme Templates':
         memes()
     elif tabs == 'Game Giveaways':
         game_giveaways()
